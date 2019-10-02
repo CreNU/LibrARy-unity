@@ -8,11 +8,11 @@ public class NewBehaviourScript : MonoBehaviour
     public const float BlockHeight = 0.45f;
     public const float BlockWidth = 0.908f;//요건 y성분
     public const float BlockDepth = 0.143f;//요건 x성분
-    public const float pivotx = 0;
-    public const float pivoty = -0.464f;
-    public const float pivotz = -1.44f;
-    public const int left = 1;
-    public const int right = 2;
+    public const float Pivotx = 0;
+    public const float Pivoty = -0.464f;
+    public const float Pivotz = -1.44f;
+    public const int Left = 1;
+    public const int Right = 2;
     //지금까지 상수였구연
 
     public GameObject TargetObj;
@@ -30,16 +30,16 @@ public class NewBehaviourScript : MonoBehaviour
         //Text데이터들을 Int로 바꾸는 과정이 필요함 (TextRow, TextCol, TextDir) -> (IntRow, IntCol, IntDir)
 
         //
-        if (IntDir == left)
+        if (IntDir == Left)
         {
-            x = pivotx - BlockDepth;
+            x = Pivotx - BlockDepth;
         }
         else
         {
-            x = pivotx + BlockDepth;
+            x = Pivotx + BlockDepth;
         }
-        y = pivoty + (IntCol - 1) * BlockWidth;
-        z = pivotz + (IntRow - 1) * BlockHeight;
+        y = Pivoty + (IntCol - 1) * BlockWidth;
+        z = Pivotz + (IntRow - 1) * BlockHeight;
         TargetObj.transform.position = new Vector3(x, y, z);
     }
 
