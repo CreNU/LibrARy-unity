@@ -13,6 +13,7 @@ public class BooksAR : MonoBehaviour
     public Text sucess;
     public Text title;
     public GameObject popUP;
+    public static int SelectNum;
     string ObName;
     string withoutNumbers;
     int nTmp;
@@ -28,6 +29,7 @@ public class BooksAR : MonoBehaviour
                 withoutNumbers = Regex.Replace(ObName, "[0-9]", "");
                 int.TryParse(strTmp, out nTmp);
                 Debug.Log("순서 인덱스 + " + nTmp);
+                SelectNum = nTmp;
                 if (withoutNumbers == "(Clone)")
                 {
 
