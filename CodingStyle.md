@@ -22,3 +22,10 @@
 >     
 >     HeroAquaMan.TalkToFishes(TurtleObj);
 >     TurtleObj.IAmTurtle();
+
+
+- 조건문에서 NOT은 (조건) == false 이렇게 합니다.
+>     if (ilililii == false)
+O
+>     if (!ilililii)
+X
