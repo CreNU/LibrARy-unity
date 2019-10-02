@@ -19,5 +19,6 @@
 - 데이터형이 헷갈릴 수 있는 변수는 앞에 데이터형을 적어주세요.
 >     Public Hero HeroAquaMan;
 >     Public Turtle TurtleObj;
+>     
 >     HeroAquaMan.TalkToFishes(TurtleObj);
 >     TurtleObj.IAmTurtle();
