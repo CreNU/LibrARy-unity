@@ -32,7 +32,7 @@ librARy는 AR 기능을 이용해 도서관에서 책을 쉽게 찾을 수 있�
 
 - Almost processes are done by server!
 
-So if you want to run it on other library, edit TargetObj.cs code.
+So if you want to run it on other library, you can edit few codes of TargetObj.cs.
 
 Please, refer the [Wiki][Wiki].
 
