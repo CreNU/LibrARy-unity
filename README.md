@@ -24,20 +24,6 @@ librARy는 AR 기능을 이용해 도서관에서 책을 쉽게 찾을 수 있�
 
 <br>
 
-- 대부분의 계산이 서버에서 처리됩니다!
-
-그래서 다른 도서관에 적용시키고 싶으시다면 LibrARy-unity에선 TargetObj.cs 코드만 살짝 수정하시면 됩니다.
-
-[위키][Wiki]를 참고해주세요.
-
-- Almost processes are done by server!
-
-So if you want to run it on other library, you can edit few codes of TargetObj.cs.
-
-Please, refer the [Wiki][Wiki].
-
-<br>
-
 ## Contributing
 1. **먼저 [CONTRIBUTING.md](./CONTRIBUTING.md)를 읽어주세요.**
 2. 레파지토리를 포크해 주세요. (https://github.com/CreNU/librARy-unity/fork)
@@ -53,11 +39,10 @@ Please, refer the [Wiki][Wiki].
 5. Push to the branch.
 6. Create a new pull-request.
 
----
-### 코드 작성시 다음을 참고해 주세요
-+ [CONTRIBUTING.md](https://github.com/CreNU/librARy-unity/blob/master/CONTRIBUTING.md)
-
 ### 서버 레포는 분리되어 있습니다
 + [librARy-server](https://github.com/CreNU/librARy-server)
+
+
+
 
 [Wiki]: https://github.com/CreNU/librARy-unity/wiki
