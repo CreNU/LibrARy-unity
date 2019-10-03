@@ -18,10 +18,6 @@ public class BooksAR : MonoBehaviour
     string withoutNumbers;
     int nTmp;
 
-
-    GameObject BackPanel = popUP.transform.GetChild(0).gameObject;
-    GameObject ArButton = BackPanel.transform.GetChild(0).gameObject;
-
     public void Update()
     {
         if (popUP.activeSelf == false && BtnItemClick.ClickStat == 1)
@@ -34,6 +30,9 @@ public class BooksAR : MonoBehaviour
                 int.TryParse(strTmp, out nTmp);
                 Debug.Log("순서 인덱스 + " + nTmp);
                 SelectNum = nTmp;
+                GameObject BackPanel = popUP.transform.GetChild(0).gameObject;
+                GameObject ArButton = BackPanel.transform.GetChild(0).gameObject;
+
                 if (withoutNumbers == "(Clone)")
                 {
 
