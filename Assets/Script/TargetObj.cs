@@ -23,14 +23,9 @@ public class NewBehaviourScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (TextRow == null || TextCol == null || TextDir == null)
-        {
-            //오류처리 추가바람 
-        }
-
-        IntRow = int.Parse(TextRow.text);
-        IntCol = int.Parse(TextCol.text);
-        IntDir = int.Parse(TextDir.text);
+        IntRow = GetBookInfo.row[BooksAR.SelectNum];
+        IntCol = GetBookInfo.col[BooksAR.SelectNum];
+        IntDir = GetBookInfo.dir[BooksAR.SelectNum];
 
         if (IntDir == Left)
         {
