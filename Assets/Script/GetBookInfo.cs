@@ -91,8 +91,8 @@ public class GetBookInfo : MonoBehaviour
                     publish.GetComponent<Text>().text = books[i]["publisher"].ToString(); // 출판사
                     string symbol = books[i]["symbol"].ToString();    // 십진분류법 기호
                     bool canBorrow = (bool)books[i]["canBorrow"]; // 대출가능여부 (true=대출가능)
-                    success.Add((bool)books[i]["arAvailable"]);   // AR 사용가능여부
-                    lname.Add(books[i]["title"].ToString());
+                    success.Insert(i,(bool)books[i]["arAvailable"]);   // AR 사용가능여부
+                    lname.Insert(i,books[i]["title"].ToString());
                     int floor, shelf, pos; // 책 위치 정보
 
                     // success가 false이면 DB에서 책 위치를 찾을 수 없음
@@ -105,18 +105,18 @@ public class GetBookInfo : MonoBehaviour
 
                     if (success[i]) // AR 이용가능
                     {
-                        dir.Add((int)books[i]["dir"]);
-                        row.Add((int)books[i]["row"]);
-                        col.Add((int)books[i]["col"]);
+                        dir.Insert(i,(int)books[i]["dir"]);
+                        row.Insert(i, (int)books[i]["row"]);
+                        col.Insert(i, (int)books[i]["col"]);
                         ColorBlock colorBlock = BtnItem.GetComponent<Button>().colors;
                         colorBlock.normalColor = Color.yellow;
                         BtnItem.GetComponent<Button>().colors = colorBlock;
                     }
                     else
                     {
-                        dir.Add(-1);
-                        row.Add(-1);
-                        col.Add(-1);
+                        dir.Insert(i,-1);
+                        row.Insert(i,-1);
+                        col.Insert(i,-1);
                         Debug.Log("ar불가능");
                         Debug.Log("순번 = " + i + "row= " + row[i] + ", col= " + col[i] + ", dir= " + dir[i]);
                         ColorBlock colorBlock = BtnItem.GetComponent<Button>().colors;
