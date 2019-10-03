@@ -18,6 +18,10 @@ public class BooksAR : MonoBehaviour
     string withoutNumbers;
     int nTmp;
 
+
+    GameObject BackPanel = popUP.transform.GetChild(0).gameObject;
+    GameObject ArButton = BackPanel.transform.GetChild(0).gameObject;
+
     public void Update()
     {
         if (popUP.activeSelf == false && BtnItemClick.ClickStat == 1)
@@ -43,9 +47,11 @@ public class BooksAR : MonoBehaviour
                     popUP.SetActive(true);
                     if (!GetBookInfo.success[nTmp])
                     {
-                        GameObject BackPanel = popUP.transform.GetChild(0).gameObject;
-                        GameObject ArButton = BackPanel.transform.GetChild(0).gameObject;
                         ArButton.SetActive(false);
+                    }
+                    else
+                    {
+                        ArButton.SetActive(true);
                     }
                     BtnItemClick.ClickStat = 0;
                 }
