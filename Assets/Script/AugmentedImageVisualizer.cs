@@ -53,8 +53,6 @@ namespace GoogleARCore.Examples.AugmentedImage
                 Object1.SetActive(false);
                 return;
             }
-
-                Object1.transform.eulerAngles = new Vector3(-90f, 0.0f, 0.0f);
                 Object1.SetActive(true);
 
 
