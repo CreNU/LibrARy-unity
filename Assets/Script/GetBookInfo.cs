@@ -12,6 +12,7 @@ public class GetBookInfo : MonoBehaviour
 {
     public GameObject Parent;
     public GameObject BtnItem;
+    public Text SText;
     public static List<int> dir = new List<int>();
     public static List<int> row = new List<int>();
     public static List<int> col = new List<int>();
@@ -42,9 +43,11 @@ public class GetBookInfo : MonoBehaviour
         UnityWebRequest req = UnityWebRequest.Get("http://106.10.36.117:31415/jbnu?q=" + BookTitle);
         yield return req.SendWebRequest();
 
+
         if (req.isNetworkError || req.isHttpError) // 서버 요청 오류
         {
             Debug.Log(req.error);
+            SText.text = "서버에 연결할 수 없습니다 ㅠㅠ" + req.error.ToString();
             Debug.Log("서버에 연결할 수 없습니다 ㅠㅠ");
         }
         else // 쿼리 성공
@@ -56,6 +59,7 @@ public class GetBookInfo : MonoBehaviour
             if (books.Count == 0)
             {
                 Debug.Log("검색결과없음");
+                SText.text = "검색결과 없음";
             }
             else
             {
@@ -70,7 +74,7 @@ public class GetBookInfo : MonoBehaviour
                     Instantiate(BtnItem, new Vector3(BtnItem.transform.position.x, ObjectY, 0f), Quaternion.identity, Parent.transform);
                     string symbol = books[i]["symbol"].ToString();    // 십진분류법 기호
                     bool canBorrow = (bool)books[i]["canBorrow"]; // 대출가능여부 (true=대출가능)
-                    success.Add((bool)books[i]["success"]);   // AR 사용가능여부
+                    success.Add((bool)books[i]["arAvailable"]);   // AR 사용가능여부
                     lname.Add(books[i]["title"].ToString());
                     int floor, shelf, pos; // 책 위치 정보
 
@@ -84,31 +88,11 @@ public class GetBookInfo : MonoBehaviour
 
                     if (success[i]) // AR 이용가능
                     {
-                        floor = (int)books[i]["floor"];
-                        shelf = (int)books[i]["shelf"];
-                        pos = (int)books[i]["pos"];
-
-                        if (pos <= 66) // left
-                        {
-                            dir.Add(1); // left
-                            row.Add(pos % 6);
-                            col.Add((int)System.Math.Ceiling((double)pos / 6));
-                        }
-                        else // right
-                        {
-                            pos -= 66;
-                            dir.Add(2); // right
-
-                            row.Add(pos % 6);
-                            col.Add((int)System.Math.Ceiling((double)pos / 6));
-                            col.Add(11 - col[i] + 1); // 뒤집기
-                        }
-
-                        // dir은 왼쪽/오른쪽 구분
-                        // 왼쪽이 1이고 오른쪽이 2임
-
-                        Debug.Log("순번 = " + i + "row= " + row[i] + ", col= " + col[i] + ", dir= " + dir[i]);
-                    }
+                        dir.Add((int)books[i]["dir"]);
+                        row.Add((int)books[i]["row"]);
+                        col.Add((int)books[i]["col"]);
+                        SText.text = "순번 = " + i + "row= " + row[i] + ", col= " + col[i] + ", dir= " + dir[i];
+            }
                     else
                     {
                         dir.Add(-1);
@@ -116,6 +100,7 @@ public class GetBookInfo : MonoBehaviour
                         col.Add(-1);
                         Debug.Log("ar불가능");
                         Debug.Log("순번 = " + i + "row= " + row[i] + ", col= " + col[i] + ", dir= " + dir[i]);
+                        SText.text = "ar불가능";
                     }
                 }
             }
