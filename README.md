@@ -23,6 +23,9 @@ librARy는 AR 기능을 이용해 도서관에서 책을 쉽게 찾을 수 있�
 - librARy services only *Chonbuk University Library 2F* now. (it's not completed yet)
 
 <br>
+## Release History
++ v.0.0.0 :
+  - 알파 버전.
 
 ## Contributing
 1. **먼저 [CONTRIBUTING.md](./CONTRIBUTING.md)를 읽어주세요.**
