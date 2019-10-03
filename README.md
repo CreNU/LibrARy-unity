@@ -17,19 +17,22 @@ librARy는 AR 기능을 이용해 도서관에서 책을 쉽게 찾을 수 있�
 
 - librARy는 유니티 엔진 **2018.3.14f1 버전**, **ARCore SDK**, **Android SDK**로 개발되었습니다.
 - librARy is developed with **Unity engine 2018.3.14f1**, **ARCore SDK** and **Android SDK**.
+<br>
 
 - 전북대학교 중앙도서관 2층 자료실만 지원합니다. (아직 개발 중)
 - librARy services only *Chonbuk University Library 2F* now. (it's not completed yet)
 
+<br>
+
 - 대부분의 계산이 서버에서 처리됩니다!
 
-그래서 다른 도서관에 적용시키고 싶으시다면 TargetObj.cs 코드만 살짝 수정하시면 됩니다.
+그래서 다른 도서관에 적용시키고 싶으시다면 LibrARy-unity에선 TargetObj.cs 코드만 살짝 수정하시면 됩니다.
 
 [위키][Wiki]를 참고해주세요.
 
 - Almost processes are done by server!
 
-So if you want to run it on other library, you can edit TargetObj.cs code little bit.
+So if you want to run it on other library, edit TargetObj.cs code.
 
 Please, refer the [Wiki][Wiki].
 
