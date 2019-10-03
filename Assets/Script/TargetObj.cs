@@ -27,9 +27,11 @@ public class NewBehaviourScript : MonoBehaviour
         {
             //오류처리 추가바람 
         }
-        //Text데이터들을 Int로 바꾸는 과정이 필요함 (TextRow, TextCol, TextDir) -> (IntRow, IntCol, IntDir)
 
-        //
+        IntRow = int.Parse(TextRow.text);
+        IntCol = int.Parse(TextCol.text);
+        IntDir = int.Parse(TextDir.text);
+
         if (IntDir == Left)
         {
             x = Pivotx - BlockDepth;
