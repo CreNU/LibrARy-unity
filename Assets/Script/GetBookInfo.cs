@@ -89,7 +89,6 @@ public class GetBookInfo : MonoBehaviour
                     name.GetComponent<Text>().text = books[i]["title"].ToString();     // 제목
                     writer.GetComponent<Text>().text = books[i]["author"].ToString();    // 저자
                     publish.GetComponent<Text>().text = books[i]["publisher"].ToString(); // 출판사
-                    Instantiate(BtnItem, ContentClone.transform);
                     string symbol = books[i]["symbol"].ToString();    // 십진분류법 기호
                     bool canBorrow = (bool)books[i]["canBorrow"]; // 대출가능여부 (true=대출가능)
                     success.Add((bool)books[i]["arAvailable"]);   // AR 사용가능여부
@@ -120,7 +119,11 @@ public class GetBookInfo : MonoBehaviour
                         col.Add(-1);
                         Debug.Log("ar불가능");
                         Debug.Log("순번 = " + i + "row= " + row[i] + ", col= " + col[i] + ", dir= " + dir[i]);
+                        ColorBlock colorBlock = BtnItem.GetComponent<Button>().colors;
+                        colorBlock.normalColor = Color.white;
+                        BtnItem.GetComponent<Button>().colors = colorBlock;
                     }
+                    Instantiate(BtnItem, ContentClone.transform);
                 }
             }
 

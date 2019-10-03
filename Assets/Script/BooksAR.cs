@@ -41,6 +41,12 @@ public class BooksAR : MonoBehaviour
                     title.text = "title = " + GetBookInfo.lname[nTmp].ToString();
 
                     popUP.SetActive(true);
+                    if (!GetBookInfo.success[nTmp])
+                    {
+                        GameObject BackPanel = popUP.transform.GetChild(0).gameObject;
+                        GameObject ArButton = BackPanel.transform.GetChild(0).gameObject;
+                        ArButton.SetActive(false);
+                    }
                     BtnItemClick.ClickStat = 0;
                 }
             }
