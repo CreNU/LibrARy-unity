@@ -27,9 +27,25 @@ librARy는 AR 기능을 이용해 도서관에서 책을 쉽게 찾을 수 있�
 
 [위키][Wiki]를 참고해주세요.
 
-
+- Almost processes are done by server!
+So if you want to run it on other library, you can edit TargetObj.cs code little bit.
 
 <br>
+
+## Contributing
+1. **먼저 [CONTRIBUTING.md](./CONTRIBUTING.md)를 읽어주세요.**
+2. 레파지토리를 포크해 주세요. (https://github.com/CreNU/librARy-unity/fork)
+3. 피처 브랜치를 만들어 주세요.
+4. 브랜치에 커밋해 주세요.
+5. 브랜치에 푸시해 주세요.
+6. 풀 리퀘스트를 작성해 주세요.
+<!-- -->
+1. **Read [CONTRIBUTING.md](./CONTRIBUTING.md) first.**
+2. Fork this repository. (https://github.com/CreNU/librARy-unity/fork)
+3. Create your feature branch.
+4. Commit your changes.
+5. Push to the branch.
+6. Create a new pull-request.
 
 ---
 ### 코드 작성시 다음을 참고해 주세요
@@ -38,4 +54,4 @@ librARy는 AR 기능을 이용해 도서관에서 책을 쉽게 찾을 수 있�
 ### 서버 레포는 분리되어 있습니다
 + [librARy-server](https://github.com/CreNU/librARy-server)
 
-[Wiki]: https://github.com/CreNU/librARy-server/wiki
+[Wiki]: https://github.com/CreNU/librARy-unity/wiki
