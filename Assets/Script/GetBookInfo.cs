@@ -11,25 +11,44 @@ using UnityEngine.UI;
 public class GetBookInfo : MonoBehaviour
 {
     public GameObject Parent;
+    public GameObject ScrollView;
+    public GameObject ParentCont;
     public GameObject BtnItem;
+    GameObject ContentClone;
     public Text SText;
+    public GameObject lodingObject;
+    int BooksCount = 0;
     public static List<int> dir = new List<int>();
     public static List<int> row = new List<int>();
     public static List<int> col = new List<int>();
     public static List<bool> success = new List<bool>();
     public static List<string> lname = new List<string>();
 
+    public void StartSetColne()
+    {
+        ContentClone = Instantiate(Parent, ParentCont.transform);
+        ContentSizeFitter CloneContentSize = ContentClone.GetComponent<ContentSizeFitter>();
+        CloneContentSize.enabled = true;
+        VerticalLayoutGroup CloneVerticalLayoutGroup = ContentClone.GetComponent<VerticalLayoutGroup>();
+        CloneVerticalLayoutGroup.enabled = true;
+        RectTransform ScrollrecTrans = ContentClone.GetComponent<RectTransform>();
+        ScrollView.GetComponent<ScrollRect>().content = ScrollrecTrans;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("서버요청중...");
-
+        StartSetColne();
     }
 
     public void StartSearchCoroutine(string Text)
     {
+        Debug.Log("책 개수 = " +BooksCount);
 
-
+        Destroy(ContentClone);
+        StartSetColne();
+        lodingObject.SetActive(true);
         StartCoroutine(GetBookList(Text));
         Debug.Log("실행");
     }
@@ -63,15 +82,17 @@ public class GetBookInfo : MonoBehaviour
             }
             else
             {
+                BooksCount = books.Count;
                 for (int i = 0; i < books.Count; i++)
                 {
+
                     Debug.Log(books.Count);
                     float ObjectY = ((float)i * -100f) + 465;
                     BtnItem.name = i.ToString();
                     name.GetComponent<Text>().text = books[i]["title"].ToString();     // 제목
                     writer.GetComponent<Text>().text = books[i]["author"].ToString();    // 저자
                     publish.GetComponent<Text>().text = books[i]["publisher"].ToString(); // 출판사
-                    Instantiate(BtnItem, new Vector3(BtnItem.transform.position.x, ObjectY, 0f), Quaternion.identity, Parent.transform);
+                    Instantiate(BtnItem, ContentClone.transform);
                     string symbol = books[i]["symbol"].ToString();    // 십진분류법 기호
                     bool canBorrow = (bool)books[i]["canBorrow"]; // 대출가능여부 (true=대출가능)
                     success.Add((bool)books[i]["arAvailable"]);   // AR 사용가능여부
@@ -91,7 +112,6 @@ public class GetBookInfo : MonoBehaviour
                         dir.Add((int)books[i]["dir"]);
                         row.Add((int)books[i]["row"]);
                         col.Add((int)books[i]["col"]);
-                        SText.text = "순번 = " + i + "row= " + row[i] + ", col= " + col[i] + ", dir= " + dir[i];
             }
                     else
                     {
@@ -100,10 +120,11 @@ public class GetBookInfo : MonoBehaviour
                         col.Add(-1);
                         Debug.Log("ar불가능");
                         Debug.Log("순번 = " + i + "row= " + row[i] + ", col= " + col[i] + ", dir= " + dir[i]);
-                        SText.text = "ar불가능";
                     }
                 }
             }
+
+            lodingObject.SetActive(false);
         }
     }
 
