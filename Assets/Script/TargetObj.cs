@@ -23,9 +23,9 @@ public class NewBehaviourScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        IntRow = GetBookInfo.row[BooksAR.SelectNum];
-        IntCol = GetBookInfo.col[BooksAR.SelectNum];
-        IntDir = GetBookInfo.dir[BooksAR.SelectNum];
+        IntRow = GetBookInfo.BooksRow[BooksAR.SelectNum];
+        IntCol = GetBookInfo.BooksCol[BooksAR.SelectNum];
+        IntDir = GetBookInfo.BooksDir[BooksAR.SelectNum];
 
         if (IntDir == Left)
         {
