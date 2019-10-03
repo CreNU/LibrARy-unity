@@ -36,15 +36,15 @@ public class BooksAR : MonoBehaviour
                 if (withoutNumbers == "(Clone)")
                 {
 
-                    row.text = "row = " + GetBookInfo.row[nTmp].ToString();
+                    row.text = "row = " + GetBookInfo.BooksRow[nTmp].ToString();
 
-                    col.text = "col = " + GetBookInfo.col[nTmp].ToString();
-                    dir.text = "dir = " + GetBookInfo.dir[nTmp].ToString();
-                    sucess.text = "AR = " + GetBookInfo.success[nTmp].ToString();
-                    title.text = "title = " + GetBookInfo.lname[nTmp].ToString();
+                    col.text = "col = " + GetBookInfo.BooksCol[nTmp].ToString();
+                    dir.text = "dir = " + GetBookInfo.BooksDir[nTmp].ToString();
+                    sucess.text = "AR = " + GetBookInfo.BooksAR[nTmp].ToString();
+                    title.text = "title = " + GetBookInfo.BooksTitle[nTmp].ToString();
 
                     popUP.SetActive(true);
-                    if (!GetBookInfo.success[nTmp])
+                    if (!GetBookInfo.BooksAR[nTmp])
                     {
                         ArButton.SetActive(false);
                     }

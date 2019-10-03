@@ -7,6 +7,7 @@ using UnityEngine.Networking;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UnityEngine.UI;
+using System;
 
 public class GetBookInfo : MonoBehaviour
 {
@@ -16,20 +17,23 @@ public class GetBookInfo : MonoBehaviour
     public GameObject BtnItem;
     GameObject ContentClone;
     public GameObject lodingObject;
-    int BooksCount = 0;
-    public static List<int> dir = new List<int>();
-    public static List<int> row = new List<int>();
-    public static List<int> col = new List<int>();
-    public static List<bool> success = new List<bool>();
-    public static List<string> lname = new List<string>();
+
+    public static int BooksCount = 0;
+    public static List<string> BooksTitle = new List<string>();
+    public static List<int> BooksDir = new List<int>();
+    public static List<int> BooksRow = new List<int>();
+    public static List<int> BooksCol = new List<int>();
+    public static List<bool> BooksAR = new List<bool>();
 
     public void StartSetColne()
     {
         ContentClone = Instantiate(Parent, ParentCont.transform);
         ContentSizeFitter CloneContentSize = ContentClone.GetComponent<ContentSizeFitter>();
         CloneContentSize.enabled = true;
+
         VerticalLayoutGroup CloneVerticalLayoutGroup = ContentClone.GetComponent<VerticalLayoutGroup>();
         CloneVerticalLayoutGroup.enabled = true;
+
         RectTransform ScrollrecTrans = ContentClone.GetComponent<RectTransform>();
         ScrollView.GetComponent<ScrollRect>().content = ScrollrecTrans;
     }
@@ -37,19 +41,16 @@ public class GetBookInfo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("서버요청중...");
         StartSetColne();
     }
 
+
     public void StartSearchCoroutine(string Text)
     {
-        Debug.Log("책 개수 = " +BooksCount);
-
         Destroy(ContentClone);
         StartSetColne();
         lodingObject.SetActive(true);
         StartCoroutine(GetBookList(Text));
-        Debug.Log("실행");
     }
 
 
@@ -58,72 +59,76 @@ public class GetBookInfo : MonoBehaviour
         GameObject name = BtnItem.transform.GetChild(0).gameObject;
         GameObject writer = BtnItem.transform.GetChild(1).gameObject;
         GameObject publish = BtnItem.transform.GetChild(2).gameObject;
-        UnityWebRequest req = UnityWebRequest.Get("http://106.10.36.117:31415/jbnu?q=" + BookTitle);
-        yield return req.SendWebRequest();
 
+        JArray Books = new JArray();
+        UnityWebRequest WebReq = UnityWebRequest.Get("http://106.10.36.117:31415/jbnu?q=" + BookTitle);
+        bool IsError = false;
+        yield return WebReq.SendWebRequest();
 
-        if (req.isNetworkError || req.isHttpError) // 서버 요청 오류
+        if (WebReq.isNetworkError || WebReq.isHttpError) // 서버 요청 오류
         {
-            Debug.Log(req.error);
+            Debug.Log(WebReq.error);
             Debug.Log("서버에 연결할 수 없습니다 ㅠㅠ");
         }
-        else // 쿼리 성공
+        else
         {
-            string json = Encoding.Default.GetString(req.downloadHandler.data);
-            JArray books = JArray.Parse(json);
-
-
-            if (books.Count == 0)
+            try
             {
-                Debug.Log("검색결과없음");
+                string JSON = Encoding.Default.GetString(WebReq.downloadHandler.data);
+                Books = JArray.Parse(JSON);
+            }
+            catch (Exception e)
+            {
+                IsError = true;
+                Debug.Log(WebReq.downloadHandler.data);
+                Debug.Log(e);
+            }
+
+            if (IsError == true)
+            {
+                Debug.Log("JSON 파싱 오류. 이거 뜨면 깃헙 이슈 남겨주셈");
+            }
+            else if (Books.Count == 0)
+            {
+                Debug.Log("검색 결과 없음");
             }
             else
             {
-                BooksCount = books.Count;
-                for (int i = 0; i < books.Count; i++)
+                BooksCount = Books.Count;
+                for (int i = 0; i < Books.Count; i++)
                 {
 
-                    Debug.Log(books.Count);
-                    float ObjectY = ((float)i * -100f) + 465;
                     BtnItem.name = i.ToString();
-                    name.GetComponent<Text>().text = books[i]["title"].ToString();     // 제목
-                    writer.GetComponent<Text>().text = books[i]["author"].ToString();    // 저자
-                    publish.GetComponent<Text>().text = books[i]["publisher"].ToString(); // 출판사
-                    string symbol = books[i]["symbol"].ToString();    // 십진분류법 기호
-                    bool canBorrow = (bool)books[i]["canBorrow"]; // 대출가능여부 (true=대출가능)
-                    success.Insert(i,(bool)books[i]["arAvailable"]);   // AR 사용가능여부
-                    lname.Insert(i,books[i]["title"].ToString());
-                    int floor, shelf, pos; // 책 위치 정보
+                    name.GetComponent<Text>().text = Books[i]["title"].ToString();     // 제목
+                    writer.GetComponent<Text>().text = Books[i]["author"].ToString();    // 저자
+                    publish.GetComponent<Text>().text = Books[i]["publisher"].ToString(); // 출판사
+                    string symbol = Books[i]["symbol"].ToString();    // 십진분류법 기호
+                    bool canBorrow = (bool)Books[i]["canBorrow"]; // 대출가능여부 (true=대출가능)
+                    BooksAR.Insert(i,(bool)Books[i]["arAvailable"]);   // AR 사용가능여부
+                    BooksTitle.Insert(i,Books[i]["title"].ToString());
 
-                    // success가 false이면 DB에서 책 위치를 찾을 수 없음
-                    // 즉, AR에서 보여줄 수 없음. 아직 위치등록안된 책이 많음
 
-                    // 쿼리날릴때 책 제목을 "언론"으로 날리셈
-                    // 등록된것도 있거 아닌것도 있고 테스트하기 좋음
-
-                    Debug.Log(canBorrow);
-
-                    if (success[i]) // AR 이용가능
+                    if (BooksAR[i]) // AR 이용가능
                     {
-                        dir.Insert(i,(int)books[i]["dir"]);
-                        row.Insert(i, (int)books[i]["row"]);
-                        col.Insert(i, (int)books[i]["col"]);
+                        BooksDir.Insert(i,(int)Books[i]["dir"]);
+                        BooksRow.Insert(i, (int)Books[i]["row"]);
+                        BooksCol.Insert(i, (int)Books[i]["col"]);
                         ColorBlock colorBlock = BtnItem.GetComponent<Button>().colors;
                         colorBlock.normalColor = Color.yellow;
                         BtnItem.GetComponent<Button>().colors = colorBlock;
                     }
                     else
                     {
-                        dir.Insert(i,-1);
-                        row.Insert(i,-1);
-                        col.Insert(i,-1);
-                        Debug.Log("ar불가능");
-                        Debug.Log("순번 = " + i + "row= " + row[i] + ", col= " + col[i] + ", dir= " + dir[i]);
+                        BooksDir.Insert(i,-1);
+                        BooksRow.Insert(i,-1);
+                        BooksCol.Insert(i,-1);
                         ColorBlock colorBlock = BtnItem.GetComponent<Button>().colors;
                         colorBlock.normalColor = Color.white;
                         BtnItem.GetComponent<Button>().colors = colorBlock;
                     }
+
                     Instantiate(BtnItem, ContentClone.transform);
+
                 }
             }
 

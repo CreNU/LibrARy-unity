@@ -13,10 +13,10 @@ public class GetBooksInfo : MonoBehaviour
 
     void Start()
     {
-        title.text = GetBookInfo.lname[BooksAR.SelectNum].ToString();
-        row.text = GetBookInfo.row[BooksAR.SelectNum].ToString();
-        col.text = GetBookInfo.col[BooksAR.SelectNum].ToString();
-        dir.text = GetBookInfo.dir[BooksAR.SelectNum].ToString();
+        title.text = GetBookInfo.BooksTitle[BooksAR.SelectNum].ToString();
+        row.text = GetBookInfo.BooksRow[BooksAR.SelectNum].ToString();
+        col.text = GetBookInfo.BooksCol[BooksAR.SelectNum].ToString();
+        dir.text = GetBookInfo.BooksDir[BooksAR.SelectNum].ToString();
     }
 
 
