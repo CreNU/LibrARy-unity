@@ -15,7 +15,6 @@ public class GetBookInfo : MonoBehaviour
     public GameObject ParentCont;
     public GameObject BtnItem;
     GameObject ContentClone;
-    public Text SText;
     public GameObject lodingObject;
     int BooksCount = 0;
     public static List<int> dir = new List<int>();
@@ -66,7 +65,6 @@ public class GetBookInfo : MonoBehaviour
         if (req.isNetworkError || req.isHttpError) // 서버 요청 오류
         {
             Debug.Log(req.error);
-            SText.text = "서버에 연결할 수 없습니다 ㅠㅠ" + req.error.ToString();
             Debug.Log("서버에 연결할 수 없습니다 ㅠㅠ");
         }
         else // 쿼리 성공
@@ -78,7 +76,6 @@ public class GetBookInfo : MonoBehaviour
             if (books.Count == 0)
             {
                 Debug.Log("검색결과없음");
-                SText.text = "검색결과 없음";
             }
             else
             {
@@ -112,7 +109,10 @@ public class GetBookInfo : MonoBehaviour
                         dir.Add((int)books[i]["dir"]);
                         row.Add((int)books[i]["row"]);
                         col.Add((int)books[i]["col"]);
-            }
+                        ColorBlock colorBlock = BtnItem.GetComponent<Button>().colors;
+                        colorBlock.normalColor = Color.yellow;
+                        BtnItem.GetComponent<Button>().colors = colorBlock;
+                    }
                     else
                     {
                         dir.Add(-1);
