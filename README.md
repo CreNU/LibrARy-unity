@@ -21,9 +21,10 @@ librARy는 AR 기능을 이용해 도서관에서 책을 쉽게 찾을 수 있�
 + librARy services only *Chonbuk University Library 2F* now. (it's not completed yet)
 
 <br>
+
 ---
-기여자는 다음을 확인해 주세요.
+### 코드 작성시 다음을 참고해 주세요
 + [CONTRIBUTING.md](https://github.com/CreNU/librARy-unity/blob/master/CONTRIBUTING.md)
 
-서버 코드는 별도로 분리되어 있습니다.
-+ [서버 (librARy-server)](https://github.com/CreNU/librARy-server)
+### 서버 레포는 분리되어 있습니다
++ [librARy-server](https://github.com/CreNU/librARy-server)
