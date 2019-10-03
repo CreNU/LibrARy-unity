@@ -1,4 +1,4 @@
-# librARy-unity
+# 📚 librARy: Book search service using AR technology 📱
 
 ![](https://img.shields.io/badge/librARy-unity-orange)
 ![](https://img.shields.io/badge/unity-v.2018.3.14f1-orange)
