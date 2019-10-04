@@ -36,27 +36,88 @@ namespace GoogleARCore.Examples.AugmentedImage
         /// The AugmentedImage to visualize.
         /// </summary>
         public AugmentedImage Image;
-        public GameObject Center;
+        float Blockz = 0.45f;
+        float Blockx = 0.2535f;
+        float Blocky = 0.9314f;
+        int Left = 1;
+        int Right = 2;
+        float RotationY;
+        float WayPointX;
+        //지금까지 상수였구연
+
+        public GameObject Lib;
+        public GameObject WayPoint;
+        public int IntRow, IntCol, IntDir;
+        public float x, y, z;
+        float CWPRx;
 
         /// <summary>
-        /// A model for the lower left corner of the frame to place when an image is detected.
+        /// The Unity Update method.
         /// </summary>
-        public GameObject Object1;
-        private float Maxdistance = 1.000f;
-
         public void Update()
         {
-            Center.transform.position = Camera.current.transform.position;
+
+            GameObject ChildWayPoint= WayPoint.transform.GetChild(1).gameObject;
+            GameObject ChildWayPoint2 = WayPoint.transform.GetChild(0).gameObject;
+
+            IntRow = GetBookInfo.BooksRow[BooksAR.SelectNum];
+            IntCol = GetBookInfo.BooksCol[BooksAR.SelectNum];
+            IntDir = GetBookInfo.BooksDir[BooksAR.SelectNum];
+
+            int ColMinus = IntCol - 1;
+
+            if (IntRow == 4)
+            {
+                y = (float)ColMinus * -0.91f; //col 깊이
+                z = 0; //row 높이
+            }
+            else if (IntRow < 4)
+            {
+                y = (float)ColMinus * -0.91f; //col 깊이
+                if (IntRow == 3)
+                {
+                    z = 1 * -0.35f;//row 높이
+                }
+                else if (IntRow == 2)
+                {
+                    z = 2 * -0.35f;//row 높이
+                }
+                else
+                {
+                    z = 3 * -0.35f;//row 높이
+                }
+            }
+            else
+            {
+                y = (float)ColMinus * -0.91f; //col 깊이
+                z = (float)(IntRow - 4) * 0.35f;//row 높이
+            }
+
+            if (IntDir == Left)
+            {
+                RotationY = 0f;
+                WayPointX = -0.9f;
+            }
+            else
+            {
+                RotationY = 180f;
+                WayPointX = 0.9f;
+            }
 
             if (Image == null || Image.TrackingState != TrackingState.Tracking)
             {
-                Object1.SetActive(false);
+                Lib.SetActive(false);
                 return;
             }
-                Object1.SetActive(true);
+            Lib.transform.localPosition = new Vector3(x, y, z);
+            Lib.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
 
+            ChildWayPoint.transform.localPosition = new Vector3(x + WayPointX, y-0.367f, z);
+            CWPRx = CWPRx + 1;
+            ChildWayPoint.transform.localRotation = Quaternion.Euler(CWPRx, -90, 90);
+            ChildWayPoint2.transform.localRotation = Quaternion.Euler(CWPRx, -90, -90);
 
-            
+            Lib.SetActive(true);
         }
     }
 }

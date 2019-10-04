@@ -3,7 +3,7 @@
 namespace TurnTheGameOn.ArrowWaypointer{		
 	public class Waypoint : MonoBehaviour {
 
-		public int radius;
+		public float radius;
 		[HideInInspector] public WaypointController waypointController;
 		[HideInInspector] public int waypointNumber;
 
