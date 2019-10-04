@@ -59,6 +59,7 @@ public class GetBookInfo : MonoBehaviour
         GameObject name = BtnItem.transform.GetChild(0).gameObject;
         GameObject writer = BtnItem.transform.GetChild(1).gameObject;
         GameObject publish = BtnItem.transform.GetChild(2).gameObject;
+        GameObject check = BtnItem.transform.GetChild(3).gameObject;
 
         JArray Books = new JArray();
         UnityWebRequest WebReq = UnityWebRequest.Get("http://106.10.36.117:31415/jbnu?q=" + BookTitle);
@@ -113,18 +114,14 @@ public class GetBookInfo : MonoBehaviour
                         BooksDir.Insert(i,(int)Books[i]["dir"]);
                         BooksRow.Insert(i, (int)Books[i]["row"]);
                         BooksCol.Insert(i, (int)Books[i]["col"]);
-                        ColorBlock colorBlock = BtnItem.GetComponent<Button>().colors;
-                        colorBlock.normalColor = Color.yellow;
-                        BtnItem.GetComponent<Button>().colors = colorBlock;
+                        check.SetActive(true);
                     }
                     else
                     {
                         BooksDir.Insert(i,-1);
                         BooksRow.Insert(i,-1);
                         BooksCol.Insert(i,-1);
-                        ColorBlock colorBlock = BtnItem.GetComponent<Button>().colors;
-                        colorBlock.normalColor = Color.white;
-                        BtnItem.GetComponent<Button>().colors = colorBlock;
+                        check.SetActive(false);
                     }
 
                     Instantiate(BtnItem, ContentClone.transform);

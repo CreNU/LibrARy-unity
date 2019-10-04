@@ -25,6 +25,7 @@ namespace GoogleARCore.Examples.AugmentedImage
     using GoogleARCore;
     using UnityEngine;
     using UnityEngine.UI;
+    using UnityEngine.SceneManagement;
 
     /// <summary>
     /// Controller for AugmentedImage example.
@@ -49,6 +50,7 @@ namespace GoogleARCore.Examples.AugmentedImage
         /// The overlay containing the fit to scan user guide.
         /// </summary>
         public GameObject FitToScanOverlay;
+        public GameObject Arrow;
 
         private Dictionary<int, AugmentedImageVisualizer> m_Visualizers
             = new Dictionary<int, AugmentedImageVisualizer>();
@@ -73,7 +75,7 @@ namespace GoogleARCore.Examples.AugmentedImage
             // Exit the app when the 'back' button is pressed.
             if (Input.GetKey(KeyCode.Escape))
             {
-                Application.Quit();
+                SceneManager.LoadScene("main");
             }
 
             // Only allow the screen to sleep when not tracking.
@@ -118,11 +120,13 @@ namespace GoogleARCore.Examples.AugmentedImage
                 if (visualizer.Image.TrackingState == TrackingState.Tracking)
                 {
                     FitToScanOverlay.SetActive(false);
+                    Arrow.SetActive(false);
                     return;
                 }
             }
 
             FitToScanOverlay.SetActive(true);
+            Arrow.SetActive(true);
         }
     }
 }

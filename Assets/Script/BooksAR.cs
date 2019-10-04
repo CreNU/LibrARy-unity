@@ -7,10 +7,7 @@ using System.Text.RegularExpressions;
 
 public class BooksAR : MonoBehaviour
 {
-    public Text row;
-    public Text col;
-    public Text dir;
-    public Text sucess;
+
     public Text title;
     public GameObject popUP;
     public static int SelectNum;
@@ -31,26 +28,23 @@ public class BooksAR : MonoBehaviour
                 Debug.Log("순서 인덱스 + " + nTmp);
                 SelectNum = nTmp;
                 GameObject BackPanel = popUP.transform.GetChild(0).gameObject;
-                GameObject ArButton = BackPanel.transform.GetChild(0).gameObject;
+                GameObject ArOn = BackPanel.transform.GetChild(2).gameObject;
+                GameObject ArOff = BackPanel.transform.GetChild(3).gameObject;
 
                 if (withoutNumbers == "(Clone)")
                 {
-
-                    row.text = "row = " + GetBookInfo.BooksRow[nTmp].ToString();
-
-                    col.text = "col = " + GetBookInfo.BooksCol[nTmp].ToString();
-                    dir.text = "dir = " + GetBookInfo.BooksDir[nTmp].ToString();
-                    sucess.text = "AR = " + GetBookInfo.BooksAR[nTmp].ToString();
-                    title.text = "title = " + GetBookInfo.BooksTitle[nTmp].ToString();
+                    title.text = GetBookInfo.BooksTitle[nTmp].ToString();
 
                     popUP.SetActive(true);
                     if (!GetBookInfo.BooksAR[nTmp])
                     {
-                        ArButton.SetActive(false);
+                        ArOn.SetActive(false);
+                        ArOff.SetActive(true);
                     }
                     else
                     {
-                        ArButton.SetActive(true);
+                        ArOn.SetActive(true);
+                        ArOff.SetActive(false);
                     }
                     BtnItemClick.ClickStat = 0;
                 }

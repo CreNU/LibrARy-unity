@@ -14,4 +14,12 @@ public class GetBookSearch : MonoBehaviour
         GetBookforInfo.StartSearchCoroutine(InputBook.text.ToString());
 
     }
+
+    public void Update()
+    {
+        if (Input.GetKey(KeyCode.Return) && InputBook.text.ToString() != "")
+        {
+            GetBookforInfo.StartSearchCoroutine(InputBook.text.ToString());
+        }
+    }
 }
