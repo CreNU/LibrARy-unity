@@ -25,7 +25,7 @@ librARy는 AR 기능을 이용해 도서관에서 책을 쉽게 찾을 수 있�
 + librARy is developed with **Unity engine 2018.3.14f1**, **ARCore SDK** and **Android SDK**.
 
 
-## Release History
+## History
 + v.0.6.0 :
   - UI 개편.
 + v.0.5.0 :
