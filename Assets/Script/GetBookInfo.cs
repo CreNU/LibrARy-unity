@@ -70,67 +70,65 @@ public class GetBookInfo : MonoBehaviour
         {
             Debug.Log(WebReq.error);
             Debug.Log("서버에 연결할 수 없습니다 ㅠㅠ");
+            return;
         }
-        else
+        try
         {
-            try
-            {
-                string JSON = Encoding.Default.GetString(WebReq.downloadHandler.data);
-                Books = JArray.Parse(JSON);
-            }
-            catch (Exception e)
-            {
-                IsError = true;
-                Debug.Log(WebReq.downloadHandler.data);
-                Debug.Log(e);
-            }
+            string JSON = Encoding.Default.GetString(WebReq.downloadHandler.data);
+            Books = JArray.Parse(JSON);
+        }
+        catch (Exception e)
+        {
+            IsError = true;
+            Debug.Log(WebReq.downloadHandler.data);
+            Debug.Log(e);
+        }
 
-            if (IsError == true)
+        if (IsError == true)
+        {
+            Debug.Log("JSON 파싱 오류. 이거 뜨면 깃헙 이슈 남겨주셈");
+            lodingObject.SetActive(false);
+            return;
+        }
+        if (Books.Count == 0)
+        {
+            Debug.Log("검색 결과 없음");
+            lodingObject.SetActive(false);
+            return;
+        }
+            
+        BooksCount = Books.Count;
+        for (int i = 0; i < Books.Count; i++)
+        {
+            BtnItem.name = i.ToString();
+            name.GetComponent<Text>().text = Books[i]["title"].ToString();     // 제목
+            writer.GetComponent<Text>().text = Books[i]["author"].ToString();    // 저자
+            publish.GetComponent<Text>().text = Books[i]["publisher"].ToString(); // 출판사
+            string symbol = Books[i]["symbol"].ToString();    // 십진분류법 기호
+            bool canBorrow = (bool)Books[i]["canBorrow"]; // 대출가능여부 (true=대출가능)
+            BooksAR.Insert(i,(bool)Books[i]["arAvailable"]);   // AR 사용가능여부
+            BooksTitle.Insert(i,Books[i]["title"].ToString());
+
+            if (BooksAR[i]) // AR 이용가능
             {
-                Debug.Log("JSON 파싱 오류. 이거 뜨면 깃헙 이슈 남겨주셈");
-            }
-            else if (Books.Count == 0)
-            {
-                Debug.Log("검색 결과 없음");
+                BooksDir.Insert(i,(int)Books[i]["dir"]);
+                BooksRow.Insert(i, (int)Books[i]["row"]);
+                BooksCol.Insert(i, (int)Books[i]["col"]);
+                check.SetActive(true);
             }
             else
             {
-                BooksCount = Books.Count;
-                for (int i = 0; i < Books.Count; i++)
-                {
-
-                    BtnItem.name = i.ToString();
-                    name.GetComponent<Text>().text = Books[i]["title"].ToString();     // 제목
-                    writer.GetComponent<Text>().text = Books[i]["author"].ToString();    // 저자
-                    publish.GetComponent<Text>().text = Books[i]["publisher"].ToString(); // 출판사
-                    string symbol = Books[i]["symbol"].ToString();    // 십진분류법 기호
-                    bool canBorrow = (bool)Books[i]["canBorrow"]; // 대출가능여부 (true=대출가능)
-                    BooksAR.Insert(i,(bool)Books[i]["arAvailable"]);   // AR 사용가능여부
-                    BooksTitle.Insert(i,Books[i]["title"].ToString());
-
-
-                    if (BooksAR[i]) // AR 이용가능
-                    {
-                        BooksDir.Insert(i,(int)Books[i]["dir"]);
-                        BooksRow.Insert(i, (int)Books[i]["row"]);
-                        BooksCol.Insert(i, (int)Books[i]["col"]);
-                        check.SetActive(true);
-                    }
-                    else
-                    {
-                        BooksDir.Insert(i,-1);
-                        BooksRow.Insert(i,-1);
-                        BooksCol.Insert(i,-1);
-                        check.SetActive(false);
-                    }
-
-                    Instantiate(BtnItem, ContentClone.transform);
-
-                }
+                BooksDir.Insert(i,-1);
+                BooksRow.Insert(i,-1);
+                BooksCol.Insert(i,-1);
+                check.SetActive(false);
             }
 
-            lodingObject.SetActive(false);
+            Instantiate(BtnItem, ContentClone.transform);
         }
+
+       lodingObject.SetActive(false);
+       
     }
 
 
