@@ -47,16 +47,18 @@ namespace GoogleARCore.Examples.AugmentedImage
 
         public GameObject Lib;
         public GameObject WayPoint;
+        public GameObject Center;
         public int IntRow, IntCol, IntDir;
         public float x, y, z;
         float CWPRx;
+        bool ObjectTrue = false;
 
         /// <summary>
         /// The Unity Update method.
         /// </summary>
         public void Update()
         {
-
+            Center.transform.position = Camera.current.transform.position;
             GameObject ChildWayPoint= WayPoint.transform.GetChild(1).gameObject;
             GameObject ChildWayPoint2 = WayPoint.transform.GetChild(0).gameObject;
 
@@ -109,15 +111,15 @@ namespace GoogleARCore.Examples.AugmentedImage
                 Lib.SetActive(false);
                 return;
             }
-            Lib.transform.localPosition = new Vector3(x, y, z);
-            Lib.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+                Lib.transform.localPosition = new Vector3(x, y, z);
+                Lib.transform.localRotation = Quaternion.Euler(-3.1f, 0f, 3.1f);
+                WayPoint.transform.localRotation = Quaternion.Euler(-3.1f, 0f,3.1f);
 
-            ChildWayPoint.transform.localPosition = new Vector3(x + WayPointX, y-0.367f, z);
-            CWPRx = CWPRx + 1;
-            ChildWayPoint.transform.localRotation = Quaternion.Euler(CWPRx, -90, 90);
-            ChildWayPoint2.transform.localRotation = Quaternion.Euler(CWPRx, -90, -90);
-
-            Lib.SetActive(true);
+                ChildWayPoint.transform.localPosition = new Vector3(x + WayPointX, y - 0.367f, z);
+                CWPRx = CWPRx + 1;
+                ChildWayPoint.transform.localRotation = Quaternion.Euler(CWPRx, -90, 90);
+                ChildWayPoint2.transform.localRotation = Quaternion.Euler(CWPRx, -90, -90);
+                Lib.SetActive(true);
         }
     }
 }

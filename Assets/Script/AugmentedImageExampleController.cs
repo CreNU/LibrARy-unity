@@ -120,13 +120,13 @@ namespace GoogleARCore.Examples.AugmentedImage
                 if (visualizer.Image.TrackingState == TrackingState.Tracking)
                 {
                     FitToScanOverlay.SetActive(false);
-                    Arrow.SetActive(false);
+                    Arrow.SetActive(true);
                     return;
                 }
             }
 
             FitToScanOverlay.SetActive(true);
-            Arrow.SetActive(true);
+            Arrow.SetActive(false);
         }
     }
 }
