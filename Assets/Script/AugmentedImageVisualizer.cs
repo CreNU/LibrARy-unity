@@ -43,7 +43,7 @@ namespace GoogleARCore.Examples.AugmentedImage
         int Right = 2;
         float RotationY;
         float WayPointX;
-        //Áö±İ±îÁö »ó¼ö¿´±¸¿¬
+        //ì§€ê¸ˆê¹Œì§€ ìƒìˆ˜ì˜€êµ¬ì—°
 
         public GameObject Lib;
         public GameObject WayPoint;
@@ -70,30 +70,17 @@ namespace GoogleARCore.Examples.AugmentedImage
 
             if (IntRow == 4)
             {
-                y = (float)ColMinus * -0.91f; //col ±íÀÌ
-                z = 0; //row ³ôÀÌ
+                z = 0; //row ë†’ì´
             }
             else if (IntRow < 4)
             {
-                y = (float)ColMinus * -0.91f; //col ±íÀÌ
-                if (IntRow == 3)
-                {
-                    z = 1 * -0.35f;//row ³ôÀÌ
-                }
-                else if (IntRow == 2)
-                {
-                    z = 2 * -0.35f;//row ³ôÀÌ
-                }
-                else
-                {
-                    z = 3 * -0.35f;//row ³ôÀÌ
-                }
+                z = (4 - IntRow) * -0.35f;//row ë†’ì´
             }
             else
             {
-                y = (float)ColMinus * -0.91f; //col ±íÀÌ
-                z = (float)(IntRow - 4) * 0.35f;//row ³ôÀÌ
+                z = (float)(IntRow - 4) * 0.35f;//row ë†’ì´
             }
+            y = (float)ColMinus * -0.91f; //col ê¹Šì´
 
             if (IntDir == Left)
             {
@@ -111,15 +98,15 @@ namespace GoogleARCore.Examples.AugmentedImage
                 Lib.SetActive(false);
                 return;
             }
-                Lib.transform.localPosition = new Vector3(x, y, z);
-                Lib.transform.localRotation = Quaternion.Euler(-3.1f, 0f, 3.1f);
-                WayPoint.transform.localRotation = Quaternion.Euler(-3.1f, 0f,3.1f);
+            Lib.transform.localPosition = new Vector3(x, y, z);
+            Lib.transform.localRotation = Quaternion.Euler(-3.1f, 0f, 3.1f);
+            WayPoint.transform.localRotation = Quaternion.Euler(-3.1f, 0f,3.1f);
 
-                ChildWayPoint.transform.localPosition = new Vector3(x + WayPointX, y - 0.367f, z);
-                CWPRx = CWPRx + 1;
-                ChildWayPoint.transform.localRotation = Quaternion.Euler(CWPRx, -90, 90);
-                ChildWayPoint2.transform.localRotation = Quaternion.Euler(CWPRx, -90, -90);
-                Lib.SetActive(true);
+            ChildWayPoint.transform.localPosition = new Vector3(x + WayPointX, y - 0.367f, z);
+            CWPRx++;
+            ChildWayPoint.transform.localRotation = Quaternion.Euler(CWPRx, -90, 90);
+            ChildWayPoint2.transform.localRotation = Quaternion.Euler(CWPRx, -90, -90);
+            Lib.SetActive(true);
         }
     }
 }
