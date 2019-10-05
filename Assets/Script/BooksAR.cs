@@ -7,7 +7,6 @@ using System.Text.RegularExpressions;
 
 public class BooksAR : MonoBehaviour
 {
-    Except Baseball;
     public Text title;
     public GameObject PopUp;
     public static int SelectNum;
