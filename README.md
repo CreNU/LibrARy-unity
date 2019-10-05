@@ -13,19 +13,35 @@
 
 librARy는 AR 기능을 이용해 도서관에서 책을 쉽게 찾을 수 있게 해주는 모바일 애플리케이션입니다.
 
-<br>
 
-- librARy는 유니티 엔진 **2018.3.14f1 버전**, **ARCore SDK**, **Android SDK**로 개발되었습니다.
-- librARy is developed with **Unity engine 2018.3.14f1**, **ARCore SDK** and **Android SDK**.
-<br>
+## Support Library
++ 전북대학교 중앙도서관 2층 자료실만 지원합니다.
++ 추후 다른 도서관도 지원할 예정입니다.
++ librARy services only *Chonbuk University Library 2F* now.
 
-- 전북대학교 중앙도서관 2층 자료실만 지원합니다. (아직 개발 중)
-- librARy services only *Chonbuk University Library 2F* now. (it's not completed yet)
 
-<br>
+## SDK
++ librARy는 유니티 엔진 **2018.3.14f1 버전**, **ARCore SDK**, **Android SDK**로 개발되었습니다.
++ librARy is developed with **Unity engine 2018.3.14f1**, **ARCore SDK** and **Android SDK**.
+
+
 ## Release History
++ v.0.6.0 :
+  - UI 개편.
++ v.0.5.0 :
+  - 책 리스트 추가.
++ v.0.3.0 :
+  - 서버 쿼리 추가.
++ v.0.2.0 :
+  - ARCore로 책 위치에 오브젝트 생성.
 + v.0.0.0 :
-  - 알파 버전.
+  - AR SDK 테스트중.
+
+
+### Server
++ 서버는 Node.js로 개발되었으며, 현재 NCloud에서 운영중입니다.
++ [librARy-server](https://github.com/CreNU/librARy-server)를 참고해 주세요.
+
 
 ## Contributing
 1. **먼저 [CONTRIBUTING.md](./CONTRIBUTING.md)를 읽어주세요.**
@@ -41,10 +57,6 @@ librARy는 AR 기능을 이용해 도서관에서 책을 쉽게 찾을 수 있�
 4. Commit your changes.
 5. Push to the branch.
 6. Create a new pull-request.
-
-### 서버 레포는 분리되어 있습니다
-+ [librARy-server](https://github.com/CreNU/librARy-server)
-
 
 
 
