@@ -38,7 +38,7 @@ librARy는 AR 기능을 이용해 도서관에서 책을 쉽게 찾을 수 있�
   - AR SDK 테스트중.
 
 
-### Server
+## Server
 + 서버는 Node.js로 개발되었으며, 현재 NCloud에서 운영중입니다.
 + [librARy-server](https://github.com/CreNU/librARy-server)를 참고해 주세요.
 
