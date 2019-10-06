@@ -66,6 +66,8 @@ public class GetBookInfo : MonoBehaviour
         bool IsError = false;
         yield return WebReq.SendWebRequest();
 
+        ////////////////////////////////////////////////////////////////////예외처리
+        
         if (WebReq.isNetworkError || WebReq.isHttpError) // 서버 요청 오류
         {
             Debug.Log(WebReq.error);
@@ -96,7 +98,8 @@ public class GetBookInfo : MonoBehaviour
             lodingObject.SetActive(false);
             yield break;
         }
-            
+       /////////////////////////////////////////////////////////////////////////    
+       
         BooksCount = Books.Count;
         for (int i = 0; i < Books.Count; i++)
         {
