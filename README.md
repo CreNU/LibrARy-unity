@@ -62,5 +62,9 @@ librARy는 AR 기능을 이용해 도서관에서 책을 쉽게 찾을 수 있�
 6. Create a new pull-request.
 
 
+## License
+[Apache 2.0](./LICENSE)
+
+
 
 [Wiki]: https://github.com/CreNU/librARy-unity/wiki
