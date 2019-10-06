@@ -52,7 +52,7 @@ public class GetBookInfo : MonoBehaviour
         lodingObject.SetActive(true);
         StartCoroutine(GetBookList(Text));
     }
-
+    
 
     IEnumerator GetBookList(string BookTitle) // 책이름->정보
     {
@@ -71,7 +71,6 @@ public class GetBookInfo : MonoBehaviour
         if (WebReq.isNetworkError || WebReq.isHttpError) // 서버 요청 오류
         {
             Debug.Log(WebReq.error);
-            Debug.Log("서버에 연결할 수 없습니다 ㅠㅠ");
             yield break;
         }
         try
@@ -88,7 +87,6 @@ public class GetBookInfo : MonoBehaviour
 
         if (IsError == true)
         {
-            Debug.Log("JSON 파싱 오류. 이거 뜨면 깃헙 이슈 남겨주셈");
             lodingObject.SetActive(false);
             yield break;
         }
@@ -98,17 +96,17 @@ public class GetBookInfo : MonoBehaviour
             lodingObject.SetActive(false);
             yield break;
         }
-       /////////////////////////////////////////////////////////////////////////    
+        /////////////////////////////////////////////////////////////////////////    
        
         BooksCount = Books.Count;
         for (int i = 0; i < Books.Count; i++)
         {
             BtnItem.name = i.ToString();
-            name.GetComponent<Text>().text = Books[i]["title"].ToString();     // 제목
-            writer.GetComponent<Text>().text = Books[i]["author"].ToString();    // 저자
+            name.GetComponent<Text>().text    = Books[i]["title"].ToString();     // 제목
+            writer.GetComponent<Text>().text  = Books[i]["author"].ToString();    // 저자
             publish.GetComponent<Text>().text = Books[i]["publisher"].ToString(); // 출판사
             string symbol = Books[i]["symbol"].ToString();    // 십진분류법 기호
-            bool canBorrow = (bool)Books[i]["canBorrow"]; // 대출가능여부 (true=대출가능)
+            bool canBorrow = (bool)Books[i]["canBorrow"]; // 대출가능여부
             BooksAR.Insert(i,(bool)Books[i]["arAvailable"]);   // AR 사용가능여부
             BooksTitle.Insert(i,Books[i]["title"].ToString());
 
@@ -131,13 +129,9 @@ public class GetBookInfo : MonoBehaviour
         }
 
        lodingObject.SetActive(false);
-       
     }
 
 
-
-
-    // Update is called once per frame
     void Update()
     {
         //Debug.Log("test");
