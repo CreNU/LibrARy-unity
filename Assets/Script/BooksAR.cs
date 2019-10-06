@@ -17,7 +17,7 @@ public class BooksAR : MonoBehaviour
     public void Update()
     {
 
-        if (PopUp.activeSelf == true || BtneItemClick.ClickStat != 1 || EventSystem.current.currentSelectedGameObject == false)
+        if (PopUp.activeSelf == true || BtneItemClick.ClickStat != 1 || EventSystem.current.currentSelectedGameObject == null)
         {
             return;
         }
