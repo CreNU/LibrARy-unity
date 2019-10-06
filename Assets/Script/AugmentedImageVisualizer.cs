@@ -41,7 +41,7 @@ namespace GoogleARCore.Examples.AugmentedImage
 
             int ColMinus = IntCol - 1;
 
-            if (IntRow == 4)
+            if (IntRow == 4)//z값 계산
             {
                 z = 0; //row 높이
             }
@@ -53,9 +53,9 @@ namespace GoogleARCore.Examples.AugmentedImage
             {
                 z = (float)(IntRow - 4) * 0.35f; //row 높이
             }
-            y = (float)ColMinus * -0.91f; //col 깊이
+            y = (float)ColMinus * -0.91f; //col 깊이 // y값 계산
 
-            if (IntDir == Left)
+            if (IntDir == Left)// x값 계산
             {
                 RotationY = 0f;
                 WayPointX = -0.9f;
@@ -66,7 +66,7 @@ namespace GoogleARCore.Examples.AugmentedImage
                 WayPointX = 0.9f;
             }
 
-            if (Image == null || Image.TrackingState != TrackingState.Tracking)
+            if (Image == null || Image.TrackingState != TrackingState.Tracking)//예외 처리
             {
                 Lib.SetActive(false);
                 return;
