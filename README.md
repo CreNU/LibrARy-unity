@@ -18,6 +18,7 @@ librARy는 AR 기능을 이용해 도서관에서 책을 쉽게 찾을 수 있�
 + 전북대학교 중앙도서관 2층 자료실만 지원합니다.
 + 추후 다른 도서관도 지원할 예정입니다.
 + librARy services only *Chonbuk University Library 2F* now.
++ We'll make it available in other libraries as well.
 
 
 ## SDK
@@ -43,6 +44,7 @@ librARy는 AR 기능을 이용해 도서관에서 책을 쉽게 찾을 수 있�
 
 ## Server
 + 서버는 Node.js로 개발되었으며, 현재 NCloud에서 운영중입니다.
++ The server use Node.js framework and is currently operating on NCloud.
 + [librARy-server](https://github.com/CreNU/librARy-server)를 참고해 주세요.
 
 
