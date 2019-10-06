@@ -70,7 +70,7 @@ public class GetBookInfo : MonoBehaviour
         {
             Debug.Log(WebReq.error);
             Debug.Log("서버에 연결할 수 없습니다 ㅠㅠ");
-            return;
+            yield break;
         }
         try
         {
@@ -88,13 +88,13 @@ public class GetBookInfo : MonoBehaviour
         {
             Debug.Log("JSON 파싱 오류. 이거 뜨면 깃헙 이슈 남겨주셈");
             lodingObject.SetActive(false);
-            return;
+            yield break;
         }
         if (Books.Count == 0)
         {
             Debug.Log("검색 결과 없음");
             lodingObject.SetActive(false);
-            return;
+            yield break;
         }
             
         BooksCount = Books.Count;
