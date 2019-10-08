@@ -12,20 +12,19 @@ namespace GoogleARCore.Examples.AugmentedImage
     {
         // The AugmentedImage to visualize.
         public AugmentedImage Image;
-        float Blockz = 0.45f;
-        float Blockx = 0.2535f;
-        float Blocky = 0.9314f;
-        int Left = 1;
-        int Right = 2;
+        protected const float Blockz = 0.45f, Blockx = 0.2535f, Blocky = 0.9314f;
+        protected const int Left = 1;
+        protected const int Right = 2;
+        
         float RotationY;
         float WayPointX;
-
         public GameObject Lib;
         public GameObject WayPoint;
         public GameObject Center;
-        public int IntRow, IntCol, IntDir;
-        public float x, y, z;
-        float CWPRx;
+        protected int IntRow, IntCol, IntDir;
+        protected float x, y, z;
+        protected float CWPRx;
+        protected int SelectedNum;
         bool ObjectTrue = false;
 
         // The Unity Update method.
@@ -34,10 +33,11 @@ namespace GoogleARCore.Examples.AugmentedImage
             Center.transform.position = Camera.current.transform.position;
             GameObject ChildWayPoint= WayPoint.transform.GetChild(1).gameObject;
             GameObject ChildWayPoint2 = WayPoint.transform.GetChild(0).gameObject;
-
-            IntRow = GetBookInfo.BooksRow[BooksAR.SelectNum];
-            IntCol = GetBookInfo.BooksCol[BooksAR.SelectNum];
-            IntDir = GetBookInfo.BooksDir[BooksAR.SelectNum];
+            
+            SelectedNum = BooksAR.GetSelectNum();
+            IntRow = GetBookInfo.BooksRow[SelectedNum];
+            IntCol = GetBookInfo.BooksCol[SelectedNum];
+            IntDir = GetBookInfo.BooksDir[SelectedNum];
 
             int ColMinus = IntCol - 1;
 
