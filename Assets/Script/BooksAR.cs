@@ -9,11 +9,16 @@ public class BooksAR : MonoBehaviour
 {
     public Text title;
     public GameObject PopUp;
-    public static int SelectNum;
+    protected int SelectNum;
     string ObName;
     string WithoutNumbers;
     int nTmp;
 
+    public static int GetSelectNum()
+    {
+        return SelectNum;
+    }
+    
     public void Update()
     {
 
@@ -38,10 +43,10 @@ public class BooksAR : MonoBehaviour
             return;
         }
         
-        title.text = GetBookInfo.BooksTitle[nTmp].ToString();
+        title.text = GetBookInfo.BooksTitle[SelectNum].ToString();
         PopUp.SetActive(true);
 
-        if (GetBookInfo.BookAR[nTemp] == NULL)
+        if (GetBookInfo.BookAR[SelectNum] == NULL)
         {
             ArOn.SetActive(false);
             ArOff.SetActive(true);
