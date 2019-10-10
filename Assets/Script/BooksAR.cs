@@ -18,11 +18,21 @@ public class BooksAR : MonoBehaviour
     {
         return SelectNum;
     }
+    public bool IsOkayToPopUp()
+    {
+        if (PopUp.activeSelf == true || 
+        BtneItemClick.ClickStat != 1 || 
+        EventSystem.current.currentSelectedGameObject == null)
+        {
+            return false;
+        }
+        return true;
+    }
     
     public void Update()
     {
 
-        if (PopUp.activeSelf == true || BtneItemClick.ClickStat != 1 || EventSystem.current.currentSelectedGameObject == null)
+        if (IsOkayToPopUp() == false)
         {
             return;
         }
@@ -32,6 +42,7 @@ public class BooksAR : MonoBehaviour
         WithoutNumbers = Regex.Replace(ObName, "[0-9]", "");
         int.TryParse(strTmp, out nTmp);
         Debug.Log("순서 인덱스 + " + nTmp);
+        
         SelectNum = nTmp;
         GameObject BackPanel = PopUp.transform.GetChild(0).gameObject;
         GameObject ArOn = BackPanel.transform.GetChild(2).gameObject;
