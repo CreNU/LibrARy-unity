@@ -11,22 +11,26 @@ namespace GoogleARCore.Examples.AugmentedImage
     public class AugmentedImageVisualizer : MonoBehaviour
     {
         // The AugmentedImage to visualize.
-        public AugmentedImage Image;
-        protected const float Blockz = 0.45f, Blockx = 0.2535f, Blocky = 0.9314f;
-        protected const int Left = 1;
-        protected const int Right = 2;
+        protected AugmentedImage Image;
         
-        float RotationY;
-        float WayPointX;
-        public GameObject Lib;
-        public GameObject WayPoint;
-        public GameObject Center;
+        protected const float Blockz = 0.45f, Blockx = 0.2535f, Blocky = 0.9314f;
         protected int IntRow, IntCol, IntDir;
         protected float x, y, z;
-        protected float CWPRx;
         protected int SelectedNum;
-        bool ObjectTrue = false;
-
+        protected enum EnumDir
+        {
+            Left = 1,
+            Right = 2
+        }
+        
+        protected float RotationY;
+        protected float WayPointX;
+        protected GameObject Lib;
+        protected GameObject WayPoint;
+        protected GameObject Center;
+        protected float CWPRx;
+        protected bool ObjectTrue = false;
+        
         // The Unity Update method.
         public void Update()
         {
@@ -53,9 +57,10 @@ namespace GoogleARCore.Examples.AugmentedImage
             {
                 z = (float)(IntRow - 4) * 0.35f; //row 높이
             }
+            
             y = (float)ColMinus * -0.91f; //col 깊이 // y값 계산
 
-            if (IntDir == Left)// x값 계산
+            if (IntDir == EnumDir.Left)// x값 계산
             {
                 RotationY = 0f;
                 WayPointX = -0.9f;
