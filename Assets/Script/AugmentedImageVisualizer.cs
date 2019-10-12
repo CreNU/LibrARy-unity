@@ -11,9 +11,9 @@ namespace GoogleARCore.Examples.AugmentedImage
     public class AugmentedImageVisualizer : MonoBehaviour
     {
         // The AugmentedImage to visualize.
-        protected AugmentedImage Image;
+        public AugmentedImage Image;
         
-        protected const float Blockz = 0.45f, Blockx = 0.2535f, Blocky = 0.9314f;
+        protected const float Blockz = 0.35f, Blockx = 0.2535f, Blocky = -0.91f;
         protected int IntRow, IntCol, IntDir;
         protected float x, y, z;
         protected int SelectedNum;
@@ -45,22 +45,9 @@ namespace GoogleARCore.Examples.AugmentedImage
 
             int ColMinus = IntCol - 1;
 
-            if (IntRow == 4)//z값 계산
-            {
-                z = 0; //row 높이
-            }
-            else if (IntRow < 4)
-            {
-                z = (4 - IntRow) * -0.35f; //row 높이
-            }
-            else
-            {
-                z = (float)(IntRow - 4) * 0.35f; //row 높이
-            }
-            
-            y = (float)ColMinus * -0.91f; //col 깊이 // y값 계산
-
-            if (IntDir == EnumDir.Left)// x값 계산
+            z = (float)(IntRow - 4) * Blockz; //z값 계산
+            y = (float)ColMinus * Blocky; //col 깊이 // y값 계산
+            if (IntDir == (int)EnumDir.Left)// x값 계산
             {
                 RotationY = 0f;
                 WayPointX = -0.9f;
