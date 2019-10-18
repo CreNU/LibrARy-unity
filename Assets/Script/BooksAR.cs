@@ -20,9 +20,8 @@ public class BooksAR : MonoBehaviour
     }
     public bool IsOkayToPopUp()
     {
-        if (PopUp.activeSelf == true || 
-        BtnItemClick.ClickStat != 1 || 
-        EventSystem.current.currentSelectedGameObject == null)
+        Debug.Log(PopUp.activeSelf + ", " + BtnItemClick.ClickStat + ", " + EventSystem.current.currentSelectedGameObject);
+        if (PopUp.activeSelf == true || BtnItemClick.ClickStat != 1 || EventSystem.current.currentSelectedGameObject == null)
         {
             return false;
         }
@@ -31,7 +30,6 @@ public class BooksAR : MonoBehaviour
     
     public void Update()
     {
-
         if (IsOkayToPopUp() == false)
         {
             return;
