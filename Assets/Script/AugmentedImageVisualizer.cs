@@ -12,50 +12,42 @@ namespace GoogleARCore.Examples.AugmentedImage
     {
         // The AugmentedImage to visualize.
         public AugmentedImage Image;
-        float Blockz = 0.45f;
-        float Blockx = 0.2535f;
-        float Blocky = 0.9314f;
-        int Left = 1;
-        int Right = 2;
-        float RotationY;
-        float WayPointX;
-
-        public GameObject Lib;
-        public GameObject WayPoint;
-        public GameObject Center;
-        public int IntRow, IntCol, IntDir;
-        public float x, y, z;
-        float CWPRx;
-        bool ObjectTrue = false;
-
+        
+        protected const float Blockz = 0.35f, Blockx = 0.2535f, Blocky = -0.91f;
+        protected int IntRow, IntCol, IntDir;
+        protected float x, y, z;
+        protected int SelectedNum;
+        protected enum EnumDir
+        {
+            Left = 1,
+            Right = 2
+        }
+        
+        protected float RotationY;
+        protected float WayPointX;
+        protected GameObject Lib;
+        protected GameObject WayPoint;
+        protected GameObject Center;
+        protected float CWPRx;
+        protected bool ObjectTrue = false;
+        
         // The Unity Update method.
         public void Update()
         {
             Center.transform.position = Camera.current.transform.position;
             GameObject ChildWayPoint= WayPoint.transform.GetChild(1).gameObject;
             GameObject ChildWayPoint2 = WayPoint.transform.GetChild(0).gameObject;
-
-            IntRow = GetBookInfo.BooksRow[BooksAR.SelectNum];
-            IntCol = GetBookInfo.BooksCol[BooksAR.SelectNum];
-            IntDir = GetBookInfo.BooksDir[BooksAR.SelectNum];
+            
+            SelectedNum = BooksAR.GetSelectNum();
+            IntRow = GetBookInfo.BooksRow[SelectedNum];
+            IntCol = GetBookInfo.BooksCol[SelectedNum];
+            IntDir = GetBookInfo.BooksDir[SelectedNum];
 
             int ColMinus = IntCol - 1;
 
-            if (IntRow == 4)//z값 계산
-            {
-                z = 0; //row 높이
-            }
-            else if (IntRow < 4)
-            {
-                z = (4 - IntRow) * -0.35f; //row 높이
-            }
-            else
-            {
-                z = (float)(IntRow - 4) * 0.35f; //row 높이
-            }
-            y = (float)ColMinus * -0.91f; //col 깊이 // y값 계산
-
-            if (IntDir == Left)// x값 계산
+            z = (float)(IntRow - 4) * Blockz; //z값 계산
+            y = (float)ColMinus * Blocky; //col 깊이 // y값 계산
+            if (IntDir == (int)EnumDir.Left)// x값 계산
             {
                 RotationY = 0f;
                 WayPointX = -0.9f;
