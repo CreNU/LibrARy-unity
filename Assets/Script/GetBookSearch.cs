@@ -9,6 +9,7 @@ public class GetBookSearch : MonoBehaviour
     public GetBookInfo GetBookforInfo;
     public InputField InputBook;
     public InputField InputBook2;
+    public GameObject BackScrollPanel;
 
     public void StartSearch()
     {
@@ -18,6 +19,11 @@ public class GetBookSearch : MonoBehaviour
         }else
         {
             GetBookforInfo.StartSearchCoroutine(InputBook2.text.ToString());
+        }
+
+        if (BackScrollPanel.activeSelf == false)
+        {
+            BackScrollPanel.SetActive(true);
         }
 
 
