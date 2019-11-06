@@ -8,10 +8,18 @@ public class GetBookSearch : MonoBehaviour
 
     public GetBookInfo GetBookforInfo;
     public InputField InputBook;
+    public InputField InputBook2;
 
     public void StartSearch()
     {
-        GetBookforInfo.StartSearchCoroutine(InputBook.text.ToString());
+        if (InputBook2.text == "")
+        {
+            GetBookforInfo.StartSearchCoroutine(InputBook.text.ToString());
+        }else
+        {
+            GetBookforInfo.StartSearchCoroutine(InputBook2.text.ToString());
+        }
+
 
     }
 
