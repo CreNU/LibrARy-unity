@@ -9,7 +9,7 @@ public class BooksAR : MonoBehaviour
 {
     public Text title;
     public GameObject PopUp;
-    protected static int SelectNum;
+    public static int SelectNum;
     string ObName;
     string WithoutNumbers;
     int nTmp;

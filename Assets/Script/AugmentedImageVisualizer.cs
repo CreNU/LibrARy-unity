@@ -10,34 +10,27 @@ namespace GoogleARCore.Examples.AugmentedImage
     // Uses 4 frame corner objects to visualize an AugmentedImage.
     public class AugmentedImageVisualizer : MonoBehaviour
     {
-        // The AugmentedImage to visualize.
         public AugmentedImage Image;
-        
-        protected const float Blockz = 0.35f, Blockx = 0.2535f, Blocky = -0.91f;
-        protected int IntRow, IntCol, IntDir;
-        protected float x, y, z;
-        protected int SelectedNum;
-        protected enum EnumDir
-        {
-            Left = 1,
-            Right = 2
-        }
-        
-        protected float RotationY;
-        protected float WayPointX;
-        protected GameObject Lib;
-        protected GameObject WayPoint;
-        protected GameObject Center;
-        protected float CWPRx;
-        protected bool ObjectTrue = false;
-        
+        public GameObject WayPoint;
+        public GameObject Lib;
+        public GameObject Center;
+        float RotationY;
+        float WayPointX;
+        int Left = 1;
+        public float x, y, z;
+        float Blockz = 0.45f, Blockx = 0.2535f, Blocky = 0.9314f;
+        public int IntRow, IntCol, IntDir;
+        float CWPRx;
+        int SelectedNum;
+
         // The Unity Update method.
         public void Update()
         {
             Center.transform.position = Camera.current.transform.position;
-            GameObject ChildWayPoint= WayPoint.transform.GetChild(1).gameObject;
-            GameObject ChildWayPoint2 = WayPoint.transform.GetChild(0).gameObject;
-            
+            GameObject Location = Lib.transform.GetChild(0).gameObject;
+            GameObject ChildWayPoint1 = WayPoint.transform.GetChild(0).gameObject;
+            GameObject ChildWayPoint2 = WayPoint.transform.GetChild(1).gameObject;
+
             SelectedNum = BooksAR.GetSelectNum();
             IntRow = GetBookInfo.BooksRow[SelectedNum];
             IntCol = GetBookInfo.BooksCol[SelectedNum];
@@ -45,9 +38,34 @@ namespace GoogleARCore.Examples.AugmentedImage
 
             int ColMinus = IntCol - 1;
 
-            z = (float)(IntRow - 4) * Blockz; //z값 계산
-            y = (float)ColMinus * Blocky; //col 깊이 // y값 계산
-            if (IntDir == (int)EnumDir.Left)// x값 계산
+            if (IntRow == 4)
+            {
+                y = (float)ColMinus * -0.91f; 
+                z = 0; 
+            }
+            else if (IntRow < 4)
+            {
+                y = (float)ColMinus * -0.91f; 
+                if (IntRow == 3)
+                {
+                    z = 1 * -0.35f;
+                }
+                else if (IntRow == 2)
+                {
+                    z = 2 * -0.35f;
+                }
+                else
+                {
+                    z = 3 * -0.35f;
+                }
+            }
+            else
+            {
+                y = (float)ColMinus * -0.91f; 
+                z = (float)(IntRow - 4) * 0.35f;
+            }
+
+            if (IntDir == Left)
             {
                 RotationY = 0f;
                 WayPointX = -0.9f;
@@ -58,21 +76,13 @@ namespace GoogleARCore.Examples.AugmentedImage
                 WayPointX = 0.9f;
             }
 
-            if (Image == null || Image.TrackingState != TrackingState.Tracking)//예외 처리
-            {
-                Lib.SetActive(false);
-                return;
-            }
-            
-            Lib.transform.localPosition = new Vector3(x, y, z);
-            Lib.transform.localRotation = Quaternion.Euler(-3.1f, 0f, 3.1f);
-            WayPoint.transform.localRotation = Quaternion.Euler(-3.1f, 0f,3.1f);
-
-            ChildWayPoint.transform.localPosition = new Vector3(x + WayPointX, y - 0.367f, z);
+            Lib.transform.localPosition = new Vector3(0f, 0f, 0f);
+            Location.transform.localPosition = new Vector3(x, y, z);
+            ChildWayPoint2.transform.localPosition = new Vector3(x + WayPointX, y - 0.367f, z);
             CWPRx++;
-            ChildWayPoint.transform.localRotation = Quaternion.Euler(CWPRx, -90, 90);
-            ChildWayPoint2.transform.localRotation = Quaternion.Euler(CWPRx, -90, -90);
-            Lib.SetActive(true);
+            ChildWayPoint1.transform.localRotation = Quaternion.Euler(CWPRx, 90f, 90f);
+            ChildWayPoint2.transform.localRotation = Quaternion.Euler(CWPRx, -90f, 90f);
+
         }
     }
 }
