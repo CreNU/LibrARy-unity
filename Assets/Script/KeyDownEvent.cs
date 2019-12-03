@@ -9,7 +9,7 @@ public class KeyDownEvent : MonoBehaviour
     public void NextScense()
     {
 
-        SceneManager.LoadScene("LibARIMG");
+        SceneManager.LoadScene("HelloAr");
     }
 
 }
