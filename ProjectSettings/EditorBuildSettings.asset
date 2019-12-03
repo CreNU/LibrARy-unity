@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/main.unity
     guid: fc8a5871a1c23d74fb48ff9d10268f90
   - enabled: 1
-    path: Assets/Scenes/HelloAR.unity
-    guid: e6a6fa04348cb45c9b0221eb19c946da
+    path: Assets/Scenes/LibARIMG.unity
+    guid: be567d47d3ab94b3badc5b211f535a24
   m_configObjects: {}

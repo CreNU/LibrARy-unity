@@ -14,6 +14,9 @@ namespace GoogleARCore.Examples.AugmentedImage
         public GameObject WayPoint;
         public GameObject Lib;
         public GameObject Center;
+        public static float BooksDistance;
+        public static int WayPointNum;
+
         float RotationY;
         float WayPointX;
         int Left = 1;
@@ -22,6 +25,8 @@ namespace GoogleARCore.Examples.AugmentedImage
         public int IntRow, IntCol, IntDir;
         float CWPRx;
         int SelectedNum;
+
+
 
         // The Unity Update method.
         public void Update()
@@ -40,12 +45,12 @@ namespace GoogleARCore.Examples.AugmentedImage
 
             if (IntRow == 4)
             {
-                y = (float)ColMinus * -0.91f; 
-                z = 0; 
+                y = (float)ColMinus * -0.91f;
+                z = 0;
             }
             else if (IntRow < 4)
             {
-                y = (float)ColMinus * -0.91f; 
+                y = (float)ColMinus * -0.91f;
                 if (IntRow == 3)
                 {
                     z = 1 * -0.35f;
@@ -61,7 +66,7 @@ namespace GoogleARCore.Examples.AugmentedImage
             }
             else
             {
-                y = (float)ColMinus * -0.91f; 
+                y = (float)ColMinus * -0.91f;
                 z = (float)(IntRow - 4) * 0.35f;
             }
 
@@ -79,10 +84,20 @@ namespace GoogleARCore.Examples.AugmentedImage
             Lib.transform.localPosition = new Vector3(0f, 0f, 0f);
             Location.transform.localPosition = new Vector3(x, y, z);
             ChildWayPoint2.transform.localPosition = new Vector3(x + WayPointX, y - 0.367f, z);
-            CWPRx++;
-            ChildWayPoint1.transform.localRotation = Quaternion.Euler(CWPRx, 90f, 90f);
-            ChildWayPoint2.transform.localRotation = Quaternion.Euler(CWPRx, -90f, 90f);
-
+            if (ChildWayPoint2.activeSelf == false)
+            {
+                BooksDistance = Vector3.Distance(ChildWayPoint1.transform.position, ChildWayPoint2.transform.position)
+                    + Vector3.Distance(Camera.current.transform.position, ChildWayPoint1.transform.position);
+                WayPointNum = 1;
+            }
+            else if(ChildWayPoint2.activeSelf == true)
+            {
+                BooksDistance = Vector3.Distance(Camera.current.transform.position, ChildWayPoint2.transform.position);
+                WayPointNum = 2;
+            }else if(ChildWayPoint2.activeSelf == false && ChildWayPoint2.activeSelf == false)
+            {
+                WayPointNum = 0;
+            }
         }
     }
 }
