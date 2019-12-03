@@ -1,4 +1,4 @@
-# 📚 librARy: Book search service using AR technology 📱
+# 📚 LibrARy: Book search service using AR technology
 
 ![](https://img.shields.io/badge/librARy-unity-orange)
 ![](https://img.shields.io/badge/unity-v.2018.3.14f1-orange)
@@ -11,15 +11,7 @@
 ![](https://img.shields.io/github/issues-closed/crenu/library-unity)
 ![](https://img.shields.io/github/last-commit/crenu/library-unity)
 
-librARy는 AR 기능을 이용해 도서관에서 책을 쉽게 찾을 수 있게 해주는 모바일 애플리케이션입니다.
-
-
-## Support Library
-+ 전북대학교 중앙도서관 2층 자료실만 지원합니다.
-+ 추후 다른 도서관도 지원할 예정입니다.
-+ librARy services only *Chonbuk University Library 2F* now.
-+ We'll make it available in other libraries as well.
-
+LibrARy는 AR 기능을 이용해 도서관에서 책을 쉽게 찾을 수 있게 해주는 모바일 애플리케이션입니다.
 
 ## SDK
 + librARy는 유니티 엔진 **2018.3.14f1 버전**, **ARCore SDK v1.12.0 버전**, **Android SDK 8.1(API 레벨 27)**로 개발되었습니다.
@@ -45,7 +37,7 @@ librARy는 AR 기능을 이용해 도서관에서 책을 쉽게 찾을 수 있�
 ## Server
 + 서버는 Node.js로 개발되었으며, 현재 NCloud에서 운영중입니다.
 + The server uses Node.js framework and is currently operating on NCloud.
-+ [librARy-server](https://github.com/CreNU/librARy-server)를 참고해 주세요.
++ [LibrARy-server](https://github.com/CreNU/LibrARy-server)를 참고해 주세요.
 
 
 ## Contributing
@@ -66,7 +58,3 @@ librARy는 AR 기능을 이용해 도서관에서 책을 쉽게 찾을 수 있�
 
 ## License
 [Apache 2.0](./LICENSE)
-
-
-
-[Wiki]: https://github.com/CreNU/librARy-unity/wiki
