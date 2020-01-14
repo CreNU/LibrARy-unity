@@ -17,7 +17,6 @@ LibrARy는 AR 기능을 이용해 도서관에서 책을 쉽게 찾을 수 있�
 + librARy는 유니티 엔진 **2018.3.14f1 버전**, **ARCore SDK v1.12.0 버전**, **Android SDK 8.1(API 레벨 27)**로 개발되었습니다.
 + librARy is developed with **Unity engine 2018.3.14f1**, **ARCore SDK v1.12.0** and **Android SDK 8.1(API Level 27)**.
 
-
 ## History
 + v.1.0.1 :
   - 안드로이드 앱 릴리즈
@@ -33,13 +32,6 @@ LibrARy는 AR 기능을 이용해 도서관에서 책을 쉽게 찾을 수 있�
 + v.0.0.0 :
   - AR SDK 테스트중
 
-
-## Server
-+ 서버는 Node.js로 개발되었으며, 현재 NCloud에서 운영중입니다.
-+ The server uses Node.js framework and is currently operating on NCloud.
-+ [LibrARy-server](https://github.com/CreNU/LibrARy-server)를 참고해 주세요.
-
-
 ## Contributing
 1. **먼저 [CONTRIBUTING.md](./CONTRIBUTING.md)를 읽어주세요.**
 2. 레파지토리를 포크해 주세요. (https://github.com/CreNU/librARy-unity/fork)
@@ -54,7 +46,3 @@ LibrARy는 AR 기능을 이용해 도서관에서 책을 쉽게 찾을 수 있�
 4. Commit your changes.
 5. Push to the branch.
 6. Create a new pull-request.
-
-
-## License
-[Apache 2.0](./LICENSE)
