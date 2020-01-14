@@ -14,8 +14,8 @@
 LibrARy는 AR 기능을 이용해 도서관에서 책을 쉽게 찾을 수 있게 해주는 모바일 애플리케이션입니다.
 
 ## SDK
-+ librARy는 유니티 엔진 **2018.3.14f1 버전**, **ARCore SDK v1.12.0 버전**, **Android SDK 8.1(API 레벨 27)**로 개발되었습니다.
-+ librARy is developed with **Unity engine 2018.3.14f1**, **ARCore SDK v1.12.0** and **Android SDK 8.1(API Level 27)**.
++ librARy는 유니티 엔진 v.2018.3.14f1, ARCore SDK v1.12.0, Android SDK 8.1 (API 27)로 개발되었습니다.
++ librARy is developed with Unity engine v.2018.3.14f1, ARCore SDK v1.12.0 and Android SDK 8.1 (API 27).
 
 ## History
 + v.1.0.1 :
